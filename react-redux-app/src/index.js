@@ -5,12 +5,20 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from "react-router-dom";
 import './custom.scss';
+import configureStore from "./redux/configureStore";
+import {Provider as ReduxProvider} from "react-redux";
+
+const store = configureStore(); //here we can pass local storage or other thing to rehydrate the state/storage
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <App />
-    </Router>
+    <ReduxProvider store={store}>
+      <Router>
+        <App />
+      </Router>
+    </ReduxProvider>
+
   </React.StrictMode>,
   document.getElementById('root')
 );
